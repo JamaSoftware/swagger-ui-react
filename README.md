@@ -1,3 +1,10 @@
+# REASON FOR THIS REPO
+-----
+This repo represents a custom version of `swagger-ui-react` with the addition of a couple pass-through props to the underlying `swagger-ui` constructor. We needed to use `swagger-ui-react` (vs. `swagger-ui`), because it lists React as a `peerDependency`, which makes it live nicely with React 16. Until [our PR](https://github.com/swagger-api/swagger-ui/pull/5594) gets merged into `swagger-ui` repo, the `contour` repo will continue to use this package. Once that PR is merged, we can go back to using the original `swagger-ui-react` in contour's `package.json`.
+
+Since `swagger-ui-react` is generated as part of `swagger-ui`'s build process, we needed to build `swagger-ui-react` ourselves and host it at a separate repo than the one [we forked](https://github.com/JamaSoftware/swagger-ui), so that referencing a Github URL in the package.json will work appropriately (package.json dependency keys must match dependency's "name" value in their package.json, or else NPM just won't install it).
+-----
+
 # `swagger-ui-react`
 
 [![NPM version](https://badge.fury.io/js/swagger-ui-react.svg)](http://badge.fury.io/js/swagger-ui-react)
