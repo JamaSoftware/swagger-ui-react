@@ -1,3 +1,18 @@
+# REASON FOR THIS REPO
+-----
+This repo represents a custom version of `swagger-ui-react` with the addition of a couple pass-through props to the underlying `swagger-ui` constructor. We needed to use `swagger-ui-react` (vs. `swagger-ui`), because it lists React as a `peerDependency`, which makes it live nicely with React 16. Until [our PR](https://github.com/swagger-api/swagger-ui/pull/5594) gets merged into `swagger-ui` repo, the `contour` repo will continue to use this package. Once that PR is merged, we can go back to using the original `swagger-ui-react` in contour's `package.json`.
+
+Since `swagger-ui-react` is generated as part of `swagger-ui`'s build process, we needed to build `swagger-ui-react` ourselves and host it at a separate repo than the one [we forked](https://github.com/JamaSoftware/swagger-ui), so that referencing a Github URL in the package.json will work appropriately (package.json dependency keys must match dependency's "name" value in their package.json, or else NPM just won't install it).
+
+## Updating and building
+
+1. Clone the JamaSoftware/swagger-ui repo and make your changes.
+2. Execute the `flavors/swagger-ui-react/release/run.sh` script. Ignore the failure on the `npm pack` step since we don't need to package this.
+3. The compiled library files we need are in the `flavors/swagger-ui-react/dist` folder. Verify the timestamps match when you ran the run.sh script.
+4. Copy the files to this repo, commit, and push. 
+
+-----
+
 # `swagger-ui-react`
 
 [![NPM version](https://badge.fury.io/js/swagger-ui-react.svg)](http://badge.fury.io/js/swagger-ui-react)
